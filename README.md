@@ -26,11 +26,11 @@ Load balancing ensures that the application will be highly available, in additio
  _The advantage of a jump box is allowing only one path to connect._
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the event logs and system metrics.
-- _What does Filebeat watch for?_
+- What does Filebeat watch for?
 
   _Filebeat monitors log files and log events._
 
-- _What does Metricbeat record?_
+- What does Metricbeat record?
 
   _Metricbeat records metrics and statistics it collects._
 
@@ -51,11 +51,11 @@ Only the Jump-Box-Provisioner machine can accept connections from the Internet. 
 - _47.221.226.237_
 
 Machines within the network can only be accessed by Jump-Box.
-- _Which machine did you allow to access your ELK VM?_
+- Which machine did you allow to access your ELK VM?
 
   _The Jump-Box-Provisioner VM_
 
-- _What was its IP address?_
+- What was its IP address?
 
   _10.0.0.4_
 
@@ -102,18 +102,19 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the Filebeat-config.yml file to Web VM's using etc/filebeat/filebeat-playbook.yml.
-- Update the Filebeat-config.yml file to include IP Address of the ELK Machine.
+- Copy the `Filebeat-config.yml` file to Web VM's using `etc/filebeat/filebeat-playbook.yml.`
+- Update the `Filebeat-config.yml` file to include IP Address of the ELK Machine.
 - Run the playbook, and navigate to the Filebeat installation page on the ELK Server GUI to check that the   installation worked as expected.
 
 - Which file is the playbook? Where do you copy it?
-  _Filebeat-playbook.yml. needs to be copied `/etc/ansible/roles/`_
+  _`Filebeat-playbook.yml.` needs to be copied `/etc/ansible/roles/`_
+  
 - Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?
 
   _Update the `hosts` option near the top of the `filebeat-playbook.yml` as either `web servers` or `elk`.
 
 - Which URL do you navigate to in order to check that the ELK server is running?
 
-  _Navigate to http://{ELK Public IP]:5601/app/kibana
+  _Navigate to http://{ELK Public IP]:5601/app/kibana._
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
