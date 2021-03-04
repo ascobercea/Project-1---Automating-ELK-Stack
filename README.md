@@ -70,7 +70,7 @@ The playbook implements the following tasks:
 - _Download & launch a docker elk container
 - _Enable server docker on boot_
 
-The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance. 
+The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance 
 
 ![Docker_ps](Diagrams/docker_ps.png)
 
