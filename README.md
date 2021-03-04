@@ -20,13 +20,16 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 
 Load balancing ensures that the application will be highly available, in addition to restricting access to the network.
 - What aspect of security do load balancers protect? What is the advantage of a jump box?
+ _Load balancers protect organizations from DDoS attacks._
+ _The advantage of a jump box is allowing only one path to connect. 
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the event logs and system metrics.
-- _TODO: What does Filebeat watch for?_
-- _TODO: What does Metricbeat record?_
+- _What does Filebeat watch for?_
+  _Filebeat monitors log files and log events._
+- _What does Metricbeat record?_
+  _Metricbeat records metrics and statistics it collects._
 
 The configuration details of each machine may be found below.
-_Note: Use the to add/remove values from the table_.
 
 | Name                 | Function      | IP Address | Operating System |
 |----------------------|---------------|------------|------------------|
@@ -42,8 +45,8 @@ The machines on the internal network are not exposed to the public Internet.
 Only the Jump-Box-Provisioner machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
 - _47.221.226.237_
 
-Machines within the network can only be accessed by _____.
-- _TODO: Which machine did you allow to access your ELK VM?_
+Machines within the network can only be accessed by Jump-Box.
+- _Which machine did you allow to access your ELK VM?_
   _The Jump-Box-Provisioner VM_
 - _What was its IP address?_
   _10.0.0.4_
@@ -72,7 +75,7 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance. 
 
-![Docker](Images/docker_ps.png)
+![Docker](Diamgrams/Images/docker_ps.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -84,7 +87,8 @@ We have installed the following Beats on these machines:
 - _Metricbeat_
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+- _Filebeat monitors logs and locations and can handle audit logs, server logs, and depreciation logs._
+  _Metricbeat monitors metrics and statistics and monitors services such as Apache, MySQL, Nginx, etc._
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
@@ -94,7 +98,6 @@ SSH into the control node and follow the steps below:
 - Update the Filebeat-config.yml file to include IP Address of the ELK Machine.
 - Run the playbook, and navigate to the Filebeat installation page on the ELK Server GUI to check that the   installation worked as expected.
 
-_TODO: Answer the following questions to fill in the blanks:_
 - _Which file is the playbook? Where do you copy it?_
   _Filebeat-playbook.yml. needs to be copied `/etc/ansible/roles/`_
 - _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
