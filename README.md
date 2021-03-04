@@ -21,18 +21,18 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 Load balancing ensures that the application will be highly available, in addition to restricting access to the network.
 - What aspect of security do load balancers protect? What is the advantage of a jump box?
 
- _Load balancers protect organizations from DDoS attacks._
+   _Load balancers protect organizations from DDoS attacks._
 
- _The advantage of a jump box is allowing only one path to connect._
+   _The advantage of a jump box is allowing only one path to connect._
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the event logs and system metrics.
 - What does Filebeat watch for?
 
-  _Filebeat monitors log files and log events._
+ _Filebeat monitors log files and log events._
 
 - What does Metricbeat record?
 
-  _Metricbeat records metrics and statistics it collects._
+ _Metricbeat records metrics and statistics it collects._
 
 The configuration details of each machine may be found below.
 
@@ -53,11 +53,11 @@ Only the Jump-Box-Provisioner machine can accept connections from the Internet. 
 Machines within the network can only be accessed by Jump-Box.
 - Which machine did you allow to access your ELK VM?
 
-  _The Jump-Box-Provisioner VM_
+   _The Jump-Box-Provisioner VM_
 
 - What was its IP address?
 
-  _10.0.0.4_
+   _10.0.0.4_
 
 A summary of the access policies in place can be found in the table below.
 
@@ -108,10 +108,10 @@ SSH into the control node and follow the steps below:
 
 - Which file is the playbook? Where do you copy it?
   _`Filebeat-playbook.yml.` needs to be copied `/etc/ansible/roles/`_
-  
+
 - Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?
 
-  _Update the `hosts` option near the top of the `filebeat-playbook.yml` as either `web servers` or `elk`.
+  _Update the `hosts` option near the top of the `filebeat-playbook.yml` as either `web servers` or `elk`._
 
 - Which URL do you navigate to in order to check that the ELK server is running?
 
