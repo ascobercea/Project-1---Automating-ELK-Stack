@@ -2,13 +2,13 @@
 
 The files in this repository were used to configure the network depicted below.
 
-**Note**: The following image link needs to be updated. Replace `diagram_filename.png` with the name of your diagram image file.  
+**Note**: The following image link needs to be updated. Replace `ELK Network Diagram.png` with the name of your diagram image file.  
 
-![TODO: Update the path with the name of your diagram](Images/diagram_filename.png)
+![TODO: Update the path with the name of your diagram](ELK-Stack/Diagrams/ELK Network Diagram.png)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the install-elk.yml file may be used to install only certain pieces of it, such as Filebeat.
 
-  - _TODO: Enter the playbook file._
+  - install-elk.yml
 
 This document contains the following details:
 - Description of the Topology
@@ -23,8 +23,8 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-Load balancing ensures that the application will be highly _____, in addition to restricting _____ to the network.
-- _TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?_
+Load balancing ensures that the application will be highly available, in addition to restricting access to the network.
+- What aspect of security do load balancers protect? What is the advantage of a jump box?
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _____ and system _____.
 - _TODO: What does Filebeat watch for?_
@@ -33,30 +33,33 @@ Integrating an ELK server allows users to easily monitor the vulnerable VMs for 
 The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
-| Name     | Function | IP Address | Operating System |
-|----------|----------|------------|------------------|
-| Jump Box | Gateway  | 10.0.0.1   | Linux            |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
+| Name                 | Function      | IP Address | Operating System |
+|----------------------|---------------|------------|------------------|
+| Jump-Box-Provisioner | Gateway       | 10.0.0.4   | Linux            |
+| Web-1                | Web Server    | 10.0.0.5   | Linux            |
+| Web-2                | Web Server    | 10.0.0.6   | Linux            |
+| ELK-VM               | ELK Dashboard | 10.1.0.4   | Linux            |
 
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the _____ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- _TODO: Add whitelisted IP addresses_
+Only the Jump-Box-Provisioner machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+- _47.221.226.237_
 
 Machines within the network can only be accessed by _____.
-- _TODO: Which machine did you allow to access your ELK VM? What was its IP address?_
-
+- _TODO: Which machine did you allow to access your ELK VM?_
+  _The Jump-Box-Provisioner VM_
+- _What was its IP address?_
+  _10.0.0.4_
 A summary of the access policies in place can be found in the table below.
 
-| Name     | Publicly Accessible | Allowed IP Addresses |
-|----------|---------------------|----------------------|
-| Jump Box | Yes/No              | 10.0.0.1 10.0.0.2    |
-|          |                     |                      |
-|          |                     |                      |
+| Name                 | Publically Accessible | Allowed IP Addresses |
+|----------------------|-----------------------|----------------------|
+| Jump-Box-Provisioner | Yes                   | 47.221.226.237       |
+| Web-1                | No                    | 10.0.0.4             |
+| Web-2                | No                    | 10.0.0.4             |
+| ELK-VM               | No                    | 10.0.0.4             |
 
 ### Elk Configuration
 
@@ -70,7 +73,7 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-**Note**: The following image link needs to be updated. Replace `docker_ps_output.png` with the name of your screenshot image file.  
+**Note**: The following image link needs to be updated. Replace `ELK Stack/docker_ps.png` with the name of your screenshot image file.  
 
 
 ![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
