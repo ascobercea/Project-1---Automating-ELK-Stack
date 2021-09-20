@@ -70,17 +70,36 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 When a particular piece of infrastructure is desired, all that is required in the future is the code that defines that particular item and deployment will be simple. This will also allow for security protocols to be be built from the ground up and facilitate simple logging and version control. Ultimately, the main purpose of this infrastructure is to implement Continuous Integration/Continuous Deployment '(CI/CD)' to our virtual environment through updates within our configuration files rather than one-to-one machine interaction/maintenance.
 
 ### Target Machines & Beats
+
 This ELK server is configured to monitor the following machines:
-- _10.0.0.4_
-- _10.0.0.5_
+- Web-1 10.0.0.5
+- Web-2 10.0.0.6
+- Web-3 10.0.0.8
 
 We have installed the following Beats on these machines:
-- _Filebeat_
-- _Metricbeat_
+- Filebeat
+- MetricBeat
 
 These Beats allow us to collect the following information from each machine:
-- _Filebeat monitors logs and locations and can handle audit logs, server logs, and depreciation logs._
-- _Metricbeat monitors metrics and statistics and monitors services such as Apache, MySQL, Nginx, etc._
+
+- Filebeat organizes log information pertaining to the file system on a given machine and sends the results to Logstash and Elasticsearch. This allows us to reduce the amount of logs pulled and monitor specifically when files are changed.
+  - Example: agent.type: filebeat log.file.path: /var/log/syslog
+
+- MetricBeat organizes log information pertaining to the machine metrics and sends the results to Logstash and Elasticsearch. This allows us to further understand how much work the machines are doing and monitor/prevent instances in which excessive CPU usage may become an issue.
+  - Example: service.type: Docker service.address: /var/run/docker.sock 
+
+### Playbook Overview
+
+The playbook implements the following tasks:
+- Increases the Virtual Memory of the Machne
+- Commands the System to utilize the Increase in Memory
+- Installs and Enables Docker 
+- Installs Python and Enables it's Docker Module
+- Initiates the ELK Stack Docker Container on Reboot 
+
+The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
+
+![](Images/sudo_docker_ps.png)
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
