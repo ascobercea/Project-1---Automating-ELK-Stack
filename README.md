@@ -39,30 +39,29 @@ The configuration details of each machine may be found below.
 | Web-2    | Web Server | 10.0.0.6   | Linux   Ubuntu   |
 | Web-3    | Web Server | 10.0.0.8   | Linux   Ubuntu   |
 | ELK-VM   | Log Server | 10.1.0.4   | Linux   Ubuntu   |
+
 ### Access Policies
 
-The machines on the internal network are not exposed to the public Internet. 
+The machines on the internal network are not exposed to the public internet. 
 
-Only the Jump-Box-Provisioner machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- _My Local IP Address_
+Only the Jump-Box-Provisioner can accept connections from the internet. Access to this machine is only allowed from the following IP addresses:
 
-Machines within the network can only be accessed by Jump-Box.
-- Which machine did you allow to access your ELK VM?
+- Whitelisted IP Address: Personal IP
 
-   _The Jump-Box-Provisioner VM_
+Machines within the network can only be accessed by the Jump-Box-Provisioner utilizing SSH (Secure Shell).
 
-- What was its IP address?
-
-   _10.0.0.4_
+The Jump-Box-Provisioner Machine is allowed to access the ELK-VM through the docker container. However, my personal computer is allowed to connect to Kibana through the web browser on port 5601.
 
 A summary of the access policies in place can be found in the table below.
 
-| Name                 | Publically Accessible | Allowed IP Addresses |
-|----------------------|-----------------------|----------------------|
-| Jump-Box-Provisioner | Yes                   | Local IP Address     |
-| Web-1                | No                    | 10.0.0.4             |
-| Web-2                | No                    | 10.0.0.4             |
-| ELK-VM               | No                    | 10.0.0.4             |
+| Name          | Publicly Accessible | Allowed IP Addresses          |
+|---------------|---------------------|-------------------------------|
+| Load Balancer | Yes                 | Personal/Open                 |
+| Jump Box      | Yes                 | Personal                      |
+| Web-1         | No                  | 10.0.0.7                      |
+| Web-2         | No                  | 10.0.0.7                      |
+| Web-3         | No                  | 10.0.0.7                      |
+| ELK-VM        | Yes                 | 10.0.0.{8,7,5,6}/local IP:5601|
 
 ### Elk Configuration
 
