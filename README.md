@@ -18,31 +18,27 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-Load balancing ensures that the application will be highly available, in addition to restricting access to the network.
-- What aspect of security do load balancers protect? What is the advantage of a jump box?
+Load balancing ensures that the application will be highly available, in addition to restricting access to the network from unwanted guests.
 
-   _Load balancers protect organizations from DDoS attacks._
+Load balancers protect the availability of a given network by providing the webservers an external IP address that is accessed by the internet. As traffic enters the network, the load balancer will distribute the incoming traffic evenly across the multiple servers. This is advantageous in many ways, but serves the primary purpose of mitigating DoS (Denial of Service) attacks due to overwhelming web traffic. 
 
-   _The advantage of a jump box is allowing only one path to connect._
+A load balancer will also typically have a health probe function that will regularly check available machines to ensure they are functioning correctly before sending traffic to them. If there is a problem with a given machine, the load balancer will stop sending traffic to the machine and will issue a reported error. This will not completely protect a system, but will add to it's resiliancy.   
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the event logs and system metrics.
-- What does Filebeat watch for?
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the event logs and system metrics. In this instance, we have utilized two tools from the Elastic Stack library: Filebeat and Metricbeat.
 
- _Filebeat monitors log files and log events._
+- FileBeat collects logs about the file system. It is particularly useful for system and application log files, but can be used for text files that you would like to index to Elasticsearch in some way.
 
-- What does Metricbeat record?
-
- _Metricbeat records metrics and statistics it collects._
+- Metricbeat collects machine metrics such as uptime from servers and systems. It's lightweight platform allows us to send system and service statistics without impacting system or application performance.  
 
 The configuration details of each machine may be found below.
 
-| Name                 | Function      | IP Address | Operating System |
-|----------------------|---------------|------------|------------------|
-| Jump-Box-Provisioner | Gateway       | 10.0.0.4   | Linux            |
-| Web-1                | Web Server    | 10.0.0.5   | Linux            |
-| Web-2                | Web Server    | 10.0.0.6   | Linux            |
-| ELK-VM               | ELK Dashboard | 10.1.0.4   | Linux            |
-
+| Name     | Function   | IP Address | Operating System |
+|----------|------------|------------|------------------|
+| Jump Box | Gateway    | 10.0.0.7   | Linux   Ubuntu   |
+| Web-1    | Web Server | 10.0.0.5   | Linux   Ubuntu   |
+| Web-2    | Web Server | 10.0.0.6   | Linux   Ubuntu   |
+| Web-3    | Web Server | 10.0.0.8   | Linux   Ubuntu   |
+| ELK-VM   | Log Server | 10.1.0.4   | Linux   Ubuntu   |
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
