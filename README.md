@@ -102,22 +102,44 @@ The following screenshot displays the result of running `docker ps` after succes
 ![NetworkDiagram](Diagrams/Images/docker_ps.PNG)
 
 ### Using the Playbook
+
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the `Filebeat-config.yml` file to Web VM's using `etc/filebeat/filebeat-playbook.yml.`
-- Update the `Filebeat-config.yml` file to include IP Address of the ELK Machine.
-- Run the playbook, and navigate to the Filebeat installation page on the ELK Server GUI to check that the   installation worked as expected.
+- Copy the install-elk.yml file to the /etc/ansible/ directory where you are currently running the ansible container.
+- Update the install-elk.yml file to reflect the hosts you would like to be effected by the playbook (ensure your ansible.cfg file is updated with the correct IP addresses of the hosts you want to effect)
+- Run the playbook with the ansible-playbook install-elk.yml command, and navigate to [your_elk_server_ip:5601] in your prefered web browser to check that the installation worked as expected.
+- For Filebeat and Metricbeat, you will need a separate playbook and configuration file shown here:
 
-- Which file is the playbook? Where do you copy it?
-  _`Filebeat-playbook.yml.` needs to be copied `/etc/ansible/roles/`_
+  - ![filebeat-config.yml](Ansible/filebeat-config.yml)
+  - ![filebeat-playbook.yml](Ansible/filebeat-playbook.yml)
+  - ![metricbeat-config.yml](Ansible/metricbeat-config.yml)
+  - ![metricbeat-playbook.yml](Ansible/metricbeat-playbook.yml)
 
-- Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?
+The following screenshot shows a successful deployment of the ELK stack to your ELK server IP:
 
-  _Update the `hosts` option near the top of the `filebeat-playbook.yml` as either `web servers` or `elk`._
+![Kibana_Homescreen](Images/Kibana_Homescreen.png)
 
-- Which URL do you navigate to in order to check that the ELK server is running?
+__Installing Beats__
 
-  _Navigate to http://{ELK Public IP]:5601/app/kibana._
+![filebeat-playbook.yml](Ansible/filebeat-playbook.yml) is the playbook necessary to install filebeat and should be copied to the /etc/filebeat directory on each individual machine you would like to monitor (this is provided in the filebeat-playbook.yml already). Be sure you have downloaded the ![filebeat-config.yml](Ansible/filebeat-config.yml) before running the playbook. 
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+![metricbeat-playbook.yml](Ansible/metricbeat-playbook.yml) is the playbook necessary to install metricbeat and should be copied to the /etc/metricbeat directory on each individual machine you would like to monitor (this is provided in the metricbeat-playbook.yml already). Be sure you have downloaded the ![metricbeat-config.yml](Ansible/metricbeat-config.yml) before running the playbook.
+
+__Creating Ansible Groups__
+
+Edit the /etc/ansible/hosts file to add web server and elk server ip addresses. In this file, you will create groups that can be updated to reflect which machines you want to install filebeat/metricbeat on specifically. EX:
+
+ > [webservers]
+ >
+ > 10.0.0.5 ansible_python_interpreter=/usr/bin/python3  
+ > 10.0.0.6 ansible_python_interpreter=/usr/bin/python3  
+ > 10.0.0.8 ansible_python_interpreter=/usr/bin/python3 
+
+__Deployment Verification__
+
+When you have successfully run the playbook, navigate to http//:[your_elk_server_ip:5601]/app/kibana and:
+
+- Navigate to the filebeat/metricbeat installation page
+- Navigate to Step 5: Module status at the bottom of the page
+- Click "Check Data" to see if Data was successfully recieved 
