@@ -118,7 +118,7 @@ SSH into the control node and follow the steps below:
 
 The following screenshot shows a successful deployment of the ELK stack to your ELK server IP:
 
-![Kibana_Homescreen](Images/Kibana_Homescreen.png)
+![NetworkDiagram](Diagrams/Images/Kibana.PNG)
 
 __Installing Beats__
 
